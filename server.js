@@ -8,13 +8,17 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// api tables/waitlist
+// const OUTPUT_DIR = path.resolve(__dirname, "api");
+// const outputPath = path.join(OUTPUT_DIR, "table.json");
 
 const reservation = [];
+const waitlist = [];
+let people = 0;
 
 
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
+  people++;
 });
 
 app.get("/reserve", function (req, res) {
@@ -25,21 +29,51 @@ app.get("/table", function (req, res) {
   res.sendFile(path.join(__dirname, "table.html"));
 });
 
+app.get("/api/waitlist", function (req, res) {
+  return res.json(waitlist);
+});
 
-
-app.post("/api/table", function(req, res) {
-  console.log(req.body)
-
-
-
-
-// end connection
-  res.end();
-})
+app.get("/api/table", function (req, res) {
+  return res.json(reservation);
+});
 
 
 
 
+app.post("/api/table", function (req, res) {
+
+  var data = req.body
+
+  let results = reservation.push(data)
+
+if (res.length < 5)  {
+
+  fs.writeFileSync(outputPath, JSON.stringify(results), (err) => {
+    if (err) throw err;
+    console.log("You are booked!");
+});
+
+} 
+
+else  {
+  waitlist.push(data);
+  res.json(false);
+}
+
+
+
+});
+
+app.post("/api/clear", function(req,res) {
+  reservation.length = [];
+  waitlist.length = [];
+  res.json({ ok: true });
+});
+
+
+
+// start app
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });
+
