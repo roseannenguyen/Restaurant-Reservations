@@ -53,7 +53,7 @@
 	    <footer class="footer">
 	      <div class="container">
 	      	<p>Control Panel</p>
-	        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
+	        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/table">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
 	      </div>
 	    </footer>
 ​
@@ -78,12 +78,12 @@
 		var currentURL = window.location.origin;
 ​
 		// The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-		$.ajax({url: currentURL + "/api/tables", method: "GET"})
+		$.ajax({url: currentURL + "/api/table", method: "GET"})
 			.done(function(tableData) {
 ​
 				// Here we are logging the URL so we have access to it for troubleshooting
 				console.log("------------------------------------");
-				console.log("URL: " + currentURL + "/api/tables");
+				console.log("URL: " + currentURL + "/api/table");
 				console.log("------------------------------------");
 ​
 				// Here we then log the NYTData to console, where it will show up as an object.
