@@ -1,5 +1,6 @@
 var express = require("express");
 var path = require("path");
+var fs = require("fs");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -9,26 +10,7 @@ app.use(express.json());
 
 // api tables/waitlist
 
-var newReservation = [
-  {
-    customerName: "Josh",
-    phoneNumber: "1234436",
-    customerEmail: "fun@gmail.com",
-    customerID: 1,
-  },
-  {
-    customerName: "Andrew",
-    phoneNumber: "0986748",
-    customerEmail: "fun@gmail.com",
-    customerID: 2,
-  },
-  {
-    customerName: "Skye",
-    phoneNumber: "345678678",
-    customerEmail: "fun@gmail.com",
-    customerID: 3,
-  }
-];
+const reservation = [];
 
 
 app.get("/", function (req, res) {
@@ -42,6 +24,20 @@ app.get("/reserve", function (req, res) {
 app.get("/table", function (req, res) {
   res.sendFile(path.join(__dirname, "table.html"));
 });
+
+
+
+app.post("/api/table", function(req, res) {
+  console.log(req.body)
+
+
+
+
+// end connection
+  res.end();
+})
+
+
 
 
 app.listen(PORT, function () {
