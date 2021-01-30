@@ -26,7 +26,7 @@
             <br>
 
             <div class="text-center">
-                <a href="/tables"><button type="button" class="btn btn-lg btn-primary"><span
+                <a href="/table"><button type="button" class="btn btn-lg btn-primary"><span
                             class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
                 <a href="/"><button type="button" class="btn btn-lg btn-default"><span
                             class="glyphicon glyphicon-home"></span></button></a>
@@ -77,7 +77,7 @@
 
         <footer class="footer">
             <div class="container">
-                <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> </p>
+                <p><a href="/api/table">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> </p>
             </div>
         </footer>
 
@@ -118,7 +118,7 @@
         // We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
         var currentURL = window.location.origin;
 
-        $.post(currentURL + "/api/tables", newReservation,
+        $.post(currentURL + "/api/table", newReservation,
             function (data) {
 
                 // If a table is available... tell user they are booked.
