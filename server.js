@@ -1,6 +1,10 @@
 var express = require("express");
 var path = require("path");
 var fs = require("fs");
+const API_DIR = path.resolve(__dirname, "api");
+const APIPath1 = path.join(API_DIR, "table");
+const APIPath2 = path.join(API_DIR, "waitlist");
+const reservation = require("./db.js");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -16,15 +20,18 @@ const waitlist = [];
 let people = 0;
 
 
+//Homepage of the reservation system
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
   people++;
 });
 
+//Page where the reservation information is saved to the array
 app.get("/reserve", function (req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+//Pulls up list of reservations from array
 app.get("/table", function (req, res) {
   res.sendFile(path.join(__dirname, "table.html"));
 });
